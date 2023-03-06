@@ -1,18 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const multer = require('multer')
-const path = require('path')
-const fs =require('fs')
 const Game = require('../models/game')
 const Developer = require('../models/developer')
-const uploadPath = path.join('public', Game.coverImageBasePath)
 const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
-const upload = multer({
-    dest: uploadPath,
-    fileFilter: (req, file, callback) => {
-        callback(null, imageMimeTypes.includes(file.mimetype))
-    }
-})
 
 // All Games Route
 router.get('/', async (req, res) => {
@@ -43,34 +33,25 @@ router.get('/new',  async (req, res) => {
 })
 
 //Creator Game Router
-router.post('/', upload.single('cover'), async (req, res) => {
-    const fileName = req.file != null ? req.file.filename : null
+router.post('/', async (req, res) => {
     const game = new Game ({
         title: req.body.title,
         developer: req.body.developer,
         publishDate: new Date (req.body.publishDate),
         size: req.body.size,
-        coverImageName: fileName,
         description: req.body.description
     })
+    saveCover(game, req.body.cover)
     try{
         const newGame = await game.save()
         //res.redirect(`games/${newGame.id}`)
         res.redirect(`games`)
     } catch (error) {
         console.log(error)
-        if (game.coverImageName != null){
-            removeGameCover(game.coverImageName)
-        }
         renderNewPage(res, game, true)
     }
 })
 
-function removeGameCover(fileName){
-    fs.unlink(path.join(uploadPath, fileName), err => {
-        if (err) console.error(err)
-    })
-}
 
 async function renderNewPage(res, game, hasError = false) {
     try{
@@ -83,6 +64,15 @@ async function renderNewPage(res, game, hasError = false) {
         res.render('games/new', params)
     }catch{
         res.redirect('/games')
+    }
+}
+
+function saveCover(game, coverEncoded){
+    if(coverEncoded == null) return
+    const cover= JSON.parse(coverEncoded)
+    if (cover != null && imageMimeTypes.includes(cover.type)){
+        game.coverImage = new Buffer.from(cover.data, 'base64')
+        game.coverImageType = cover.type
     }
 }
 
