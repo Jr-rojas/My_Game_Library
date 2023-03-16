@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Developer = require('../models/developer')
+const Game = require('../models/game')
 
 // All Creator Route
 router.get('/', async (req, res) => {
@@ -17,7 +18,6 @@ router.get('/', async (req, res) => {
     } catch {
         res.redirect('/')
     }
-
 })
 
 //New Creator Route
@@ -32,8 +32,7 @@ router.post('/', async (req, res) => {
     })
     try {
         const newDeveloper = await developer.save()
-        //res.redirect(`developer/${newDeveloper.id}`)
-        res.redirect(`developers`)
+        res.redirect(`developer/${newDeveloper.id}`)
     } catch {
         res.render('developers/new', {
             developer: developer,
@@ -42,5 +41,60 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.get('/:id', async (req, res) => {
+    try{
+        const developer = await Developer.findById(req.params.id)
+        const games = await Game.find({ developer: developer.id }).limit(6).exec()
+        res.render('developers/show', { 
+            developer: developer,
+            gamesByDeveloper: games
+        })
+    }catch{
+        res.redirect('/')
+    }
+    
+})
 
+router.get('/:id/edit', async (req, res) => {
+    try{
+        const developer = await Developer.findById(req.params.id)
+        res.render('developers/edit', { developer: developer })
+    }catch{
+        res.redirect('/developers')
+    }
+})
+
+router.put('/:id', async (req, res) => {
+    let developer
+    try {
+        developer = await Developer.findById(req.params.id)
+        developer.name = req.body.name
+        await developer.save()
+        res.redirect(`/developers/${developer.id}`)
+    } catch {
+        if (developer == null ){
+            res.redirect('/')
+        }else{
+            res.render('developers/edit', {
+                developer: developer,
+                errorMessage: 'Error updating Developer'
+            })
+        }
+    }
+})
+
+router.delete('/:id', async (req, res) => {
+    let developer
+    try {
+        developer = await Developer.findById(req.params.id)
+        await developer.remove()
+        res.redirect(`/developers`)
+    } catch {
+        if (developer == null ){
+            res.redirect('/')
+        }else{
+            res.redirect(`/developers/${developer.id}`)
+        }
+    }
+})
 module.exports = router
