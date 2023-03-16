@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
     })
     try {
         const newDeveloper = await developer.save()
-        res.redirect(`developer/${newDeveloper.id}`)
+        res.redirect(`developers/${newDeveloper.id}`)
     } catch {
         res.render('developers/new', {
             developer: developer,
