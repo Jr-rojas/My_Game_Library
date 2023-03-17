@@ -1,0 +1,12 @@
+<h2>
+    <%=game.title%>
+</h2>
+<img height="150" width="100" src="<%= game.coverImagePath %>">
+<div>Publisher: <%=game.developer.name%></div>
+<div>Published Date: <%=game.publishDate.toDateString()%></div>
+<div>Game Size: <%=game.size%> Gb </div>
+<div>Description: <%=game.description%></div>
+<br>
+<a href="/games/<%=game.id%>/edit">Edit</a>
+<%- include ("../partials/deleteForm", { url: `/games/${game.id}`}) %>
+<a href="/developers/<%= game.developer.id%>">View Developer</a>

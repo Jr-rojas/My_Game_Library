@@ -31,8 +31,16 @@ router.post('/', async (req, res) => {
         name: req.body.name
     })
     try {
-        const newDeveloper = await developer.save()
-        res.redirect(`developers/${newDeveloper.id}`)
+        const currentDevelopers = await Developer.findOne({ name: req.body.name})
+        if (currentDevelopers){
+            res.render('developers/new',{
+                developer: developer,
+                errorMessage: 'Error creating Developer: Developer already exists'
+            })
+        }else{
+            const newDeveloper = await developer.save()
+            res.redirect(`developers/${newDeveloper.id}`)
+        }
     } catch {
         res.render('developers/new', {
             developer: developer,
@@ -41,6 +49,7 @@ router.post('/', async (req, res) => {
     }
 })
 
+// DEVELOPERS/DEVELOPERID
 router.get('/:id', async (req, res) => {
     try{
         const developer = await Developer.findById(req.params.id)

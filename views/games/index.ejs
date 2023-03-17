@@ -18,6 +18,8 @@
 <br>
 <div>
     <% games.forEach(game=>{%>
-        <img height="150" width="100" src="<%= game.coverImagePath %>">
+        <a href="games/<%=game.id%>">
+            <img height="150" width="100" src="<%= game.coverImagePath %>">
+        </a>
     <% }) %>
 </div>
