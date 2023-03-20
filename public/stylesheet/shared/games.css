@@ -1,0 +1,43 @@
+:root{
+    --game-cover-width: 200px;
+    --game-cover-width-large: 325px;
+    --game-cover-aspect-ratio: 0.75;
+}
+
+.game-cover{
+    width: var(--game-cover-width);
+    height: calc(var(--game-cover-width)/var(--game-cover-aspect-ratio));
+}
+
+.game-cover-large{
+    --game-cover-width: var(--game-cover-width-large);
+}
+
+.game-grid{
+    display: grid;
+    justify-content: center;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fill, var(--game-cover-width));
+}
+
+.game-grid-large{
+    grid-template-columns: repeat(auto-fill, var(--game-cover-width-large));
+}
+
+.game-details{
+    display: flex;
+}
+.game-details-label{
+    font-size: 1.2rem;
+    font-weight: 500;
+    align-self: flex-start;
+}
+
+.game-details-grid{
+    margin-left: .50rem;
+    display: grid;
+    align-content: flex-start;
+    align-items: center;
+    grid-gap: 1rem;
+    grid-template-columns: auto auto;
+}

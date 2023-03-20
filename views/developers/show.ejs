@@ -1,11 +1,11 @@
-<h2><%=developer.name%></h2>
-<a href="/developers/<%=developer.id%>/edit">Edit</a>
-<%- include ("../partials/deleteForm", { url: `/developers/${developer.id}`}) %>
-<% if (gamesByDeveloper.length > 0) {%>
-    <h2>Games by Developer</h2>
-    <% gamesByDeveloper.forEach(game=>{%>
-        <a href="/games/<%=game.id%>">
-            <img height="150" width="100" src="<%=game.coverImagePath%>">
-        </a>
-    <% }) %>
-<% }%>
+<div class="container">
+    <h2><%=developer.name%></h2>
+    <div class="d-flex my-3">
+        <a href="/developers/<%=developer.id%>/edit" class="btn btn-warning me-2">Edit</a>
+        <%- include ("../partials/deleteForm", { url: `/developers/${developer.id}`}) %>
+    </div>
+    <% if (gamesByDeveloper.length > 0) {%>
+        <h2>Games by Developer</h2>
+        <%- include('../partials/gameGrid', {games : gamesByDeveloper})%>
+    <% }%>
+</div> 

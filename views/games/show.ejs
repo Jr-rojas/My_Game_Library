@@ -1,12 +1,26 @@
+
 <h2>
     <%=game.title%>
 </h2>
-<img height="150" width="100" src="<%= game.coverImagePath %>">
-<div>Publisher: <%=game.developer.name%></div>
-<div>Published Date: <%=game.publishDate.toDateString()%></div>
-<div>Game Size: <%=game.size%> Gb </div>
-<div>Description: <%=game.description%></div>
+<div class="game-details">
+    <img class="game-cover" src="<%= game.coverImagePath %>">
+
+    <div class="game-details-grid">
+        <div class="game-details-label">Publisher:</div>
+        <div><%=game.developer.name%></div>
+        <div class="game-details-label">Published Date:</div>
+        <div><%=game.publishDate.toDateString()%></div>
+        <div class="game-details-label">Game Size:</div>
+        <div> <%=game.size%> Gb</div>
+        <div class="game-details-label">Description:</div>
+        <div> <%=game.description%></div>
+    </div>
+</div>
 <br>
-<a href="/games/<%=game.id%>/edit">Edit</a>
-<%- include ("../partials/deleteForm", { url: `/games/${game.id}`}) %>
-<a href="/developers/<%= game.developer.id%>">View Developer</a>
+<div>
+    <div class="d-grid gap-2 d-flex mb-2">
+        <a href="/games/<%=game.id%>/edit" class="btn btn-warning">Edit</a>
+        <%- include ("../partials/deleteForm", { url: `/games/${game.id}`}) %>
+    </div>
+    <a href="/developers/<%= game.developer.id%>"class='btn btn-primary'>View Developer</a>
+</div>

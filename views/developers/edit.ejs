@@ -1,6 +1,8 @@
 <h2>Edit Developer</h2>
 <form action="/developers/<%=developer.id%>?_method=PUT" method="POST">
     <%- include('_form_fields') %>
-    <a href="/developers/<%=developer.id%>">Cancel</a>
-    <button type="submit">Update</button>
+    <div class="d-grid gap-2 d-flex justify-content-end my-3">
+        <a href="/developers/<%=developer.id%>" class="btn btn-warning">Cancel</a>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
 </form>

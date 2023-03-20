@@ -1,0 +1,12 @@
+<% gameCoverClass = locals.large ? 
+'game-cover-large' : ''%>
+<% gameGridClass = locals.large ? 
+'game-grid-large' : ''%>
+
+<div class="game-grid <%=gameGridClass%>">
+<% games.forEach(game=>{%>
+    <a href="/games/<%=game.id%>">
+        <img class="game-cover <%=gameCoverClass%>" src="<%= game.coverImagePath %>">
+    </a>
+<% }) %>
+</div>

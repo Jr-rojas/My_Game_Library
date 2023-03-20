@@ -1,6 +1,8 @@
 <h2>Edit Game</h2>
 <form action="/games/<%=game.id%>?_method=PUT" method="POST">
     <%- include('_form_fields') %>
-    <a href="/games">Cancel</a>
-    <button type="submit">Update</button>
+    <div class="d-flex justify-content-end my-5">
+        <a href="/games" class="btn btn-warning me-2">Cancel</a>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
 </form>

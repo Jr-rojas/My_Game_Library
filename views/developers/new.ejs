@@ -1,6 +1,10 @@
-<h2>New Developer</h2>
-<form action="/developers" method="POST">
-    <%- include('_form_fields') %>
-    <a href="/developers">Cancel</a>
-    <button type="submit">Create</button>
-</form>
+<div class="container">
+    <h2>New Developer</h2>
+    <form action="/developers" method="POST">
+        <%- include('_form_fields') %>
+        <div class="d-grid gap-2 d-flex justify-content-end my-3">
+            <a href="/developers" class="btn btn-warning">Cancel</a>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </form>
+</div>

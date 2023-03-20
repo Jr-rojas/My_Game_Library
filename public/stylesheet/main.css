@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap');
+@import 'shared/games.css';
+
+:root{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+
+body{
+    background: #082032;
+    color:#C8C6C6;
+    overflow-x: hidden;
+}
+
+.navbar-brand{
+    font-family: 'Bebas Neue', cursive; 
+    font-size: 30px;
+    color: #C8C6C6;
+}
+
+.container{
+    margin: 30px auto;
+    padding: 30px 5px;
+}
+
+h2{
+    color:#C8C6C6;
+    font-size: 2rem;
+}
+
+textarea{
+    height: 100%;
+    color:#C8C6C6;
+    resize: none;
+}
+
+.form-control{
+    background-color: rgba(62, 94, 137, 0.681);
+    color:#C8C6C6;
+}
+
+.form-control:focus{
+    background-color:rgb(62, 94, 137);
+    color:#C8C6C6;
+}
+
+.form-select{
+    background-color: rgba(62, 94, 137, 0.681);
+    color:#C8C6C6;
+}
+
+.filepond--root{
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 0;
+}
+
+.filepond--panel-root{
+    background-color:  rgba(62, 94, 137, 0.681);
+    border: 1px solid #C8C6C6;
+}
+
+.filepond--drop-label{
+    color: #C8C6C6;
+    font-size: inherit;
+}
+
+.error-message{
+    color: #f45050;
+}

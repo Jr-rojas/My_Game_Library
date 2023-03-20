@@ -1,6 +1,10 @@
-<h2>New Game</h2>
-<form action="/games" method="POST">
-    <%- include('_form_fields') %>
-        <a href="/games">Cancel</a>
-        <button type="submit">Create</button>
-</form>
+<div class="container">
+    <h2>New Game</h2>
+    <form action="/games" method="POST">
+        <%- include('_form_fields') %>
+        <div class="d-grid gap-2 d-flex justify-content-end my-5">
+            <a class="btn btn-warning me-2" href="/games">Cancel</a>
+            <button class="btn btn-primary" type="submit">Create</button>
+        </div>
+    </form>
+</div>
