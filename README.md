@@ -8,7 +8,7 @@ https://ps-vita-mybrary.onrender.com/
 
 
 ## Introduction:
-This project is a full-stack website that allows users to view and add games to their library. The website is built using EJS, HTML, CSS, Bootstrap, Node.js, Express.js, MongoDB, and Mongoose. The website allows users to add and view games as well as developers. When adding a game, users can select from a list of developers that have been added to the database to link it with the game. The website has a simple navigation system that allows users to access the games page, add games, view developers, and add developers. Users can also view game details, which are obtained from the database and displayed on the website.
+This project is a full-stack website that allows users to view and add games to their library. The website allows users to add and view games as well as developers. When adding a game, users can select from a list of developers that have been added to the database to link it with the game. The website has a simple navigation system that allows users to access the games page, add games, view developers, and add developers. Users can also view game details, which are obtained from the database and displayed on the website.
 
 
 
