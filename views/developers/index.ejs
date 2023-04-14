@@ -10,11 +10,13 @@
 </div>
 <br>
 <% developers.forEach(developer => { %>
-    <div><%= developer.name%></div>
-    <div class="d-grid gap-2 d-flex justify-content-end">
-        <a class="btn btn-primary " href="/developers/<%= developer.id%>">View</a>
-        <a class="btn btn-warning" href="/developers/<%= developer.id%>/edit">Edit</a>
-        <%- include('../partials/deleteForm', 
-                    {url: `/developers/${developer.id}`}) %>
+    <div class="container">
+        <div><%= developer.name%></div>
+        <div class="d-grid gap-2 d-flex justify-content-end">
+            <a class="btn btn-primary " href="/developers/<%= developer.id%>">View</a>
+            <a class="btn btn-warning" href="/developers/<%= developer.id%>/edit">Edit</a>
+            <%- include('../partials/deleteForm', 
+                        {url: `/developers/${developer.id}`}) %>
+        </div>
     </div>
 <% }) %>

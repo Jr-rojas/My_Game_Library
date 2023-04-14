@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Game = require('../models/game')
 const Developer = require('../models/developer')
+const auth = require('../authenticate')
 const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
 
 // All Games Route
@@ -28,12 +29,13 @@ router.get('/', async (req, res) => {
 })
 
 //New Game Route
-router.get('/new',  async (req, res) => {
+router.get('/new', auth, async (req, res) => {
+    //ADD IF !AUTH RENDER THE ERROR ON THE WEBSITE NOT JUST THE ERROR
     renderNewPage(res, new Game())
 })
 
 //Creator Game Router
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     const game = new Game ({
         title: req.body.title,
         developer: req.body.developer,
@@ -46,7 +48,7 @@ router.post('/', async (req, res) => {
         const newGame = await game.save()
         res.redirect(`games/${newGame.id}`)
     } catch (error) {
-        console.log(error)
+        //console.log(error)
         renderNewPage(res, game, true)
     }
 })

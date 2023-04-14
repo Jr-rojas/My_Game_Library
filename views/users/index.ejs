@@ -1,0 +1,9 @@
+<h2>Showing Users</h2>
+<% if (user) { %>
+    <p>Welcome, <%= user.username %>!</p>
+    <form action="/users/logout" method="GET">
+        <button type="submit">Logout</button>
+    </form>
+  <% } else { %>
+    <p>Please sign in to access this page.</p>
+  <% } %>

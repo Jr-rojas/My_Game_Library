@@ -1,0 +1,9 @@
+<h2>Showing Sign In</h2>
+<%- include('../partials/errorMessage') %>
+<form action="/users/signin" method="POST">
+    <%- include('_form_fields') %>
+    <div>
+        <a href="/users">Cancel</a>
+        <button type="submit">Sign In</button>
+    </div>
+</form>

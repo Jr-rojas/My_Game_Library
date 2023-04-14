@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <%- include('../partials/header.ejs') %>
+    <%- include('../partials/header.ejs', { currentPage: currentPage }) %>
     <div class="container">
         <%- include('../partials/errorMessage.ejs') %>
         <%- body %>
