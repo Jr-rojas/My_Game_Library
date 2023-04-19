@@ -27,10 +27,10 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     store: new FileStore(),
-    cookie: {
-        sameSite: 'none',
-        secure: true
-      }
+    // cookie: {
+    //     sameSite: 'none',
+    //     secure: true
+    //   }
 }));
 
 app.use(flash());
