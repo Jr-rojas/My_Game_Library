@@ -1,3 +1,4 @@
+<% if (!error) { %>
 <h2>Edit Game</h2>
 <form action="/games/<%=game.id%>?_method=PUT" method="POST">
     <%- include('_form_fields') %>
@@ -6,3 +7,10 @@
         <button type="submit" class="btn btn-primary">Update</button>
     </div>
 </form>
+<% } else { %>
+    <h2>Edit Game</h2>
+    <p> Please sign in as admin to access this page</p>
+    <form action="/users/signin" method="GET">
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+<% } %>

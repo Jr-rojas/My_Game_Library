@@ -1,9 +1,13 @@
-<h2>Showing Users</h2>
 <% if (user) { %>
-    <p>Welcome, <%= user.username %>!</p>
-    <form action="/users/logout" method="GET">
-        <button type="submit">Logout</button>
-    </form>
+    <div class="container">
+      <h2>Welcome, <%= user.username %>!</h2>
+      <form action="/users/logout" method="GET">
+          <button type="submit" class="btn btn-danger">Logout</button>
+      </form>
+  </div>
   <% } else { %>
-    <p>Please sign in to access this page.</p>
+    <h3>Please sign in to access this page.</h3>
+    <form action="/users/signin" method="GET">
+      <button type="submit" class="btn btn-primary">Sign In</button>
+  </form>
   <% } %>

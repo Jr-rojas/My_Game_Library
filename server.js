@@ -9,6 +9,7 @@ const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const passport = require('passport')
 const authenticate = require('./authenticate')
+const flash = require('connect-flash')
 
 const indexRouter = require('./routes/index')
 const developerRouter = require('./routes/developers')
@@ -29,7 +30,7 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-
+app.use(flash())
 //app.use(auth)
 app.use(methodOverride('_method'))
 app.use(express.static('public'))

@@ -1,9 +1,11 @@
-<h2>Showing Sign In</h2>
-<%- include('../partials/errorMessage') %>
-<form action="/users/signin" method="POST">
-    <%- include('_form_fields') %>
-    <div>
-        <a href="/users">Cancel</a>
-        <button type="submit">Sign In</button>
-    </div>
-</form>
+<div class="sign-in">
+    <h2>Sign In</h2>
+    <%- include('../partials/errorMessage') %>
+    <form action="/users/signin" method="POST">
+        <%- include('_form_fields') %>
+        <div class="d-grid gap-2 d-flex justify-content-end my-2">
+            <a href="/users" class="btn btn-warning">Cancel</a>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+        </div>
+    </form>
+</div>

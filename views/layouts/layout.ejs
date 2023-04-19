@@ -19,7 +19,15 @@
 <body>
     <%- include('../partials/header.ejs', { currentPage: currentPage }) %>
     <div class="container">
+        <% if (typeof messages !== 'undefined') { %>
+            <% Object.keys(messages).forEach(function(type) { %>
+              <% messages[type].forEach(function(message) { %>
+                <div class="alert alert-<%= type %>"><%= message %></div>
+              <% }); %>
+            <% }); %>
+          <% } %>
         <%- include('../partials/errorMessage.ejs') %>
+        <%- include('../partials/error.ejs') %>
         <%- body %>
     </div>
 

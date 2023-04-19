@@ -18,6 +18,10 @@ body{
     color: #C8C6C6;
 }
 
+.navbar-toggler{
+    background-color: #C8C6C6 !important;
+}
+
 .container{
     margin: 30px auto;
     padding: 30px 5px;
@@ -66,4 +70,10 @@ textarea{
 
 .error-message{
     color: #f45050;
+}
+
+.sign-in{
+    margin:auto;
+    width: 75%;
+
 }

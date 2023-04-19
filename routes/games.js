@@ -29,13 +29,16 @@ router.get('/', async (req, res) => {
 })
 
 //New Game Route
-router.get('/new', auth, async (req, res) => {
-    //ADD IF !AUTH RENDER THE ERROR ON THE WEBSITE NOT JUST THE ERROR
-    renderNewPage(res, new Game())
+router.get('/new', auth,  async (req, res) => {
+    try {
+        renderNewPage(res, new Game())
+    } catch {
+        res.redirect('/games')
+      }
 })
 
 //Creator Game Router
-router.post('/', auth, async (req, res) => {
+router.post('/',auth, async (req, res) => {
     const game = new Game ({
         title: req.body.title,
         developer: req.body.developer,
@@ -66,7 +69,7 @@ router.get('/:id', async (req, res) => {
 })
 
 //Edit Game Route
-router.get('/:id/edit', async (req,res) => {
+router.get('/:id/edit',auth, async (req,res) => {
     try{
         const game = await Game.findById(req.params.id)
         renderEditPage(res, game)
@@ -77,7 +80,7 @@ router.get('/:id/edit', async (req,res) => {
 })
 
 //Update Game Route
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
     let game
 
     try{
@@ -103,7 +106,7 @@ router.put('/:id', async (req, res) => {
 })
 
 //Delete Game Route
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',auth, async (req, res) => {
     let game
     try {
         game = await Game.findById(req.params.id)
@@ -134,7 +137,7 @@ async function renderFormPage(res, game, form, hasError = false) {
         const developers = await Developer.find({})
         const params = {
             developers: developers,
-            game: game
+            game: game,
         }
         if (hasError){
             if (form === 'edit'){

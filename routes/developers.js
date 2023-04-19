@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Developer = require('../models/developer')
 const Game = require('../models/game')
+const auth = require('../authenticate')
 
 // All Creator Route
 router.get('/', async (req, res) => {
@@ -20,13 +21,13 @@ router.get('/', async (req, res) => {
     }
 })
 
-//New Creator Route
-router.get('/new', (req, res) => {
+//New Developer Route
+router.get('/new',auth, (req, res) => {
     res.render('developers/new', { developer: new Developer() })
 })
 
-//Creator Developer Router
-router.post('/', async (req, res) => {
+//Post Developer Router
+router.post('/',auth, async (req, res) => {
     const developer = new Developer({
         name: req.body.name
     })
@@ -64,7 +65,7 @@ router.get('/:id', async (req, res) => {
     
 })
 
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', auth, async (req, res) => {
     try{
         const developer = await Developer.findById(req.params.id)
         res.render('developers/edit', { developer: developer })
@@ -73,7 +74,7 @@ router.get('/:id/edit', async (req, res) => {
     }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth,  async (req, res) => {
     let developer
     try {
         developer = await Developer.findById(req.params.id)
@@ -92,7 +93,7 @@ router.put('/:id', async (req, res) => {
     }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',auth, async (req, res) => {
     let developer
     try {
         developer = await Developer.findById(req.params.id)

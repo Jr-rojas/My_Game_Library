@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     res.render('users/index', {user: user})
 })
 
-//SIGNUP
+//SIGNUP only used to create admin
 router.get('/signup', (req, res) => {
     res.render('users/signup',{ user: new User() })
 })
@@ -37,12 +37,15 @@ router.post('/signup', (req, res) => {
 
 //SIGNIN
 router.get('/signin', (req, res) => {
-    res.render('users/signIn', {user: new User()})
+    res.render('users/signin', {user: new User()})
 })
 
 router.post('/signin', passport.authenticate('local'), (req, res) => {
-    res.redirect('/'), {
-        message: 'You are authenticated!'
+    try{
+        req.flash('success', 'You have successfully logged in!');
+        res.redirect('/');
+    }catch{
+        res.redirect('/')
     }
 });
 

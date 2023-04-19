@@ -3,14 +3,15 @@ const LocalStrategy = require('passport-local')
 const User = require('./models/user')
 
 function auth(req, res, next) {
-    console.log(req.user);
-
+    //console.log(req.user);
     if (!req.user) {
-        const err = new Error('You are not authenticated!');                    
-        err.status = 401;
-        return next(err);
+        const error = 'You are not authenticated!'
+        res.locals.error = error
+        return next()
     } else {
-        return next();
+        const error = null
+        res.locals.error = error
+        return next()
     }
 }
 
