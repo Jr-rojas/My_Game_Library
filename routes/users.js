@@ -44,7 +44,8 @@ router.post('/signin', passport.authenticate('local'), (req, res) => {
     try{
         req.flash('success', 'You have successfully logged in!');
         res.redirect('/');
-    }catch{
+    }catch(err){
+        console.log(err)
         res.redirect('/')
     }
 });
