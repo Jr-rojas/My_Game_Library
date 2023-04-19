@@ -41,13 +41,11 @@ router.get('/signin', (req, res) => {
 })
 
 router.post('/signin', passport.authenticate('local'), (req, res) => {
-    try{
-        req.flash('success', 'You have successfully logged in!');
-        res.redirect('/');
-    }catch(err){
-        console.log(err)
-        res.redirect('/')
+    if (!req.user) {
+        return res.render('users/signin', { errorMessage: 'Incorrect password.' });
     }
+
+    res.redirect('/');
 });
 
 //LOGOUT

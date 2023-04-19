@@ -10,7 +10,6 @@ const FileStore = require('session-file-store')(session);
 const passport = require('passport');
 const authenticate = require('./authenticate');
 const flash = require('connect-flash');
-const cookieSession = require('cookie-session');
 
 const indexRouter = require('./routes/index');
 const developerRouter = require('./routes/developers');
@@ -27,8 +26,7 @@ app.use(session({
     secret:'12345-67890-09876-54321',
     saveUninitialized: false,
     resave: false,
-    
-    //store: new FileStore()
+    store: new FileStore(),
     cookie: {
         sameSite: 'none',
         secure: true
