@@ -40,12 +40,21 @@ router.get('/signin', (req, res) => {
     res.render('users/signin', {user: new User()})
 })
 
-router.post('/signin', passport.authenticate('local'), (req, res) => {
-    if (!req.user) {
-        return res.render('users/signin', { errorMessage: 'Incorrect password.' });
-    }
-
-    res.redirect('/');
+router.post('/signin', (req, res,next) => {
+    passport.authenticate('local', (error, user, info) => {
+        if (error) {
+          return next(error);
+        }
+        if (!user) {
+          return res.render('users/signin', { errorMessage: 'Incorrect credentials' , user: new User()});
+        }
+        req.login(user, error => {
+          if (error) {
+            return next(error);
+          }
+          return res.redirect('/');
+        });
+      })(req, res, next);
 });
 
 //LOGOUT
